@@ -119,7 +119,7 @@ fn generate_exception_x(out: &PathBuf, isa_config: &HashMap<String, Value>) {
 
 fn inject_cfgs(isa_config: &HashMap<String, Value>) {
     for (key, value) in isa_config {
-        if key.starts_with("XCHAL_HAVE") && *value.as_integer().unwrap_or(&0) != 0 {
+        if key.starts_with("XCHAL_HAVE") && *value.as_integer().unwrap_or(&0) != 0 && key != "XCHAL_HAVE_FP" {
             println!("cargo:rustc-cfg={}", key);
         }
     }
